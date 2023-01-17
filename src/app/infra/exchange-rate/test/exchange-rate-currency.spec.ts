@@ -4,7 +4,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { ExchangeRateCurrencyService } from './exchange-rate-currency.service';
+import { ExchangeRateCurrencyService } from '../exchange-rate-currency.service';
 import { environment } from 'src/environments/environment';
 
 import mockedAllSymbols from './mocks/all-symbols.mock.json';
@@ -14,7 +14,7 @@ import allSymbolsResponse from './mocks/fixtures/all-symbols-response.fixture.js
 import currencyExchangeResponse from './mocks/fixtures/currency-exchange-response.fixture.json';
 
 describe(ExchangeRateCurrencyService.name, () => {
-  let serviceRef: ExchangeRateCurrencyService;
+  let SUT: ExchangeRateCurrencyService;
   let mockedHttpClient: HttpTestingController;
 
   beforeEach(async () => {
@@ -23,12 +23,12 @@ describe(ExchangeRateCurrencyService.name, () => {
       providers: [ExchangeRateCurrencyService],
     }).compileComponents();
 
-    serviceRef = TestBed.inject(ExchangeRateCurrencyService);
+    SUT = TestBed.inject(ExchangeRateCurrencyService);
     mockedHttpClient = TestBed.inject(HttpTestingController);
   });
 
   it(`${ExchangeRateCurrencyService.prototype.getAllSymbols.name} should return all the symbols supported by the API`, (done) => {
-    serviceRef.getAllSymbols().subscribe((data) => {
+    SUT.getAllSymbols().subscribe((data) => {
       expect(data).toEqual(mockedAllSymbols);
       done();
     });
@@ -38,14 +38,14 @@ describe(ExchangeRateCurrencyService.name, () => {
       .flush(allSymbolsResponse);
   });
 
-  it(`${ExchangeRateCurrencyService.prototype.convertExchange.name}`, (done) => {
+  it(`${ExchangeRateCurrencyService.prototype.convertExchange.name} should return all the data based on a exchange query`, (done) => {
     const currenciesToBeConverted = {
       from: 'EUR',
       to: 'USD',
       amount: 50,
     };
 
-    serviceRef.convertExchange('EUR', 'USD', '50').subscribe((data) => {
+    SUT.convertExchange('EUR', 'USD', '50').subscribe((data) => {
       expect(data).toEqual(mockedCurrencyExchange);
       done();
     });
