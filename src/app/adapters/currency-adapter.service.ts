@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+
 import { CurrencyApiInterfaceToken } from '../injection-tokens/currency-api-service.di.token';
 import { Currency, CurrencyExchange } from '../models/currency.model';
 import { CurrencyApiService } from '../usecases/currency-api.service.usecase';
@@ -38,6 +39,19 @@ export class CurrencyAdapterService implements CurrencyService {
     to: string,
     value: number
   ): Observable<CurrencyExchange> {
-    throw new Error('Method not implemented.');
+    return this.currencyApiService.convertExchange(to, from, value).pipe(
+      map((data) => {
+        const { query, info, result } = data;
+        const currencyExchange: CurrencyExchange = {
+          currencyFrom: query.from,
+          valueFrom: query.amount,
+          currencyTo: query.to,
+          valueTo: result,
+          rate: info.rate,
+        };
+
+        return currencyExchange;
+      })
+    );
   }
 }
