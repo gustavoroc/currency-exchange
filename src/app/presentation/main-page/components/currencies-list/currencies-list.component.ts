@@ -12,7 +12,6 @@ export class CurrenciesListComponent implements OnInit {
   currenciesListPaginated!: Currency[];
   currenciesPerPage: number = 5;
   currenciesCurrentPage: number = 0;
-  
 
   constructor(
     @Inject(CurrencyAdapterInterfaceToken)
@@ -23,9 +22,10 @@ export class CurrenciesListComponent implements OnInit {
     this.currencyService.availableCurrencies().subscribe((currencies) => {
       this.currenciesList = currencies;
     });
+    this.setPaginatedList();
   }
 
-  paginatedList(): void {
+  setPaginatedList(): void {
     const currentPageIndex =
       this.currenciesCurrentPage * this.currenciesPerPage;
 
