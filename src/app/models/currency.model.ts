@@ -4,11 +4,9 @@ export interface Currency {
 }
 
 export interface CurrencyExchange {
-  currencyFrom: Currency;
+  currencyFrom: string;
   valueFrom: number;
-
-  currencyTo: Currency;
+  currencyTo: string;
   valueTo: number;
-
   rate: number;
 }

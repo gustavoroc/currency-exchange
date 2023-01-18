@@ -17,7 +17,7 @@ export class ExchangeRateCurrencyService implements CurrencyApiService {
   convertExchange(
     from: string,
     to: string,
-    amount: string = '1'
+    amount: number = 1
   ): Observable<any> {
     return this.httpClient
       .get<any>(
