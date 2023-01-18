@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CurrencyAdapterService } from '../currency-adapter.service';
-import { CurrencyApiService } from '../../usecases/currency-api.service.usecase';
 import { CurrencyApiStub } from './currency-api.stub';
 import { Currency, CurrencyExchange } from 'src/app/models/currency.model';
 import { CurrencyApiInterfaceToken } from 'src/app/injection-tokens/currency-api-service.di.token';
