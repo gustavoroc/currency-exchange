@@ -18,7 +18,20 @@ export class CurrencyApiStub implements CurrencyApiService {
 
     return of(response);
   }
-  convertExchange(to: string, from: string, amount: string): Observable<any> {
-    return of(1);
+  convertExchange(to: string, from: string, amount: number): Observable<any> {
+    const response = {
+      query: {
+        from: 'USD',
+        to: 'EUR',
+        amount: 50,
+      },
+      info: {
+        rate: 0.923499,
+      },
+      date: '2023-01-17',
+      result: 46.174937,
+    };
+
+    return of(response);
   }
 }
