@@ -1,12 +1,12 @@
-import { of } from 'rxjs';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CurrencyAdapterService } from 'src/app/adapters/currency-adapter.service';
 import { CurrencyApiStub } from 'src/app/adapters/test/currency-api.stub';
 import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
 import { CurrencyApiInterfaceToken } from 'src/app/injection-tokens/currency-api-service.di.token';
-import { CurrenciesListComponent } from './currencies-list.component';
+import { CurrenciesListComponent } from '../currencies-list.component';
 import { Currency } from 'src/app/models/currency.model';
+import { listOfCurrencies } from './mock-currencies';
 
 describe(CurrenciesListComponent.name, () => {
   let fixture: ComponentFixture<CurrenciesListComponent>;
@@ -70,33 +70,6 @@ describe(CurrenciesListComponent.name, () => {
   });
 
   it(`${CurrenciesListComponent.prototype.setPaginatedList.name} should do the paginated list of currencies`, () => {
-    const listOfCurrencies: Currency[] = [
-      {
-        fullName: 'fake_1',
-        acronym: 'fake_1',
-      },
-      {
-        fullName: 'fake_2',
-        acronym: 'fake_2',
-      },
-      {
-        fullName: 'fake_3',
-        acronym: 'fake_3',
-      },
-      {
-        fullName: 'fake_4',
-        acronym: 'fake_4',
-      },
-      {
-        fullName: 'fake_5',
-        acronym: 'fake_5',
-      },
-      {
-        fullName: 'fake_6',
-        acronym: 'fake_6',
-      },
-    ];
-
     component.currenciesList = listOfCurrencies;
 
     component.setPaginatedList();
