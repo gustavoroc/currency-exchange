@@ -37,7 +37,39 @@ describe(CurrenciesListComponent.name, () => {
     done();
   });
 
-  it(`${CurrenciesListComponent.prototype.paginatedList} should return the paginated list of currencies`, () => {
+  it(`${CurrenciesListComponent.prototype.setPaginatedList.name} should start with the paginated list of currencies`, () => {
+    const listOfCurrencies: Currency[] = [
+      {
+        fullName: 'fake_1',
+        acronym: 'fake_1',
+      },
+      {
+        fullName: 'fake_2',
+        acronym: 'fake_2',
+      },
+      {
+        fullName: 'fake_3',
+        acronym: 'fake_3',
+      },
+      {
+        fullName: 'fake_4',
+        acronym: 'fake_4',
+      },
+      {
+        fullName: 'fake_5',
+        acronym: 'fake_5',
+      },
+      {
+        fullName: 'fake_6',
+        acronym: 'fake_6',
+      },
+    ];
+
+    component.currenciesList = listOfCurrencies;
+    expect(component.currenciesListPaginated.length > 0).toBe(true);
+  });
+
+  it(`${CurrenciesListComponent.prototype.setPaginatedList.name} should do the paginated list of currencies`, () => {
     const listOfCurrencies: Currency[] = [
       {
         fullName: 'fake_1',
@@ -67,11 +99,11 @@ describe(CurrenciesListComponent.name, () => {
 
     component.currenciesList = listOfCurrencies;
 
-    component.paginatedList();
+    component.setPaginatedList();
     expect(component.currenciesListPaginated.length).toBe(5);
 
     component.currenciesCurrentPage = 1;
-    component.paginatedList();
+    component.setPaginatedList();
     expect(component.currenciesListPaginated.length).toBe(1);
   });
 });
