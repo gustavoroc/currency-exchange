@@ -32,9 +32,8 @@ describe(CurrenciesListComponent.name, () => {
     fixture.detectChanges();
   });
 
-  it(`${CurrenciesListComponent.prototype.currenciesList} should have the list of currencies, when the component inits`, (done) => {
+  it(`${CurrenciesListComponent.prototype.currenciesList} should have the list of currencies, when the component inits`, () => {
     expect(component.currenciesList.length > 0).toBeTrue();
-    done();
   });
 
   it(`${CurrenciesListComponent.prototype.setPaginatedList.name} should start with the paginated list of currencies`, () => {
