@@ -25,7 +25,7 @@ describe(CurrencyAdapterService.name, () => {
     currencyApiStub = TestBed.inject<any>(CurrencyApiInterfaceToken);
   });
 
-  it(`${CurrencyAdapterService.prototype.availableCurrencies} should return the array of currencies model`, (done) => {
+  it(`${CurrencyAdapterService.prototype.availableCurrencies.name} should return the array of currencies model`, (done) => {
     const currencies: Currency[] = [
       {
         fullName: 'Brazilian Real',
