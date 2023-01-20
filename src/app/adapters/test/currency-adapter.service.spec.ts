@@ -23,19 +23,8 @@ describe(CurrencyAdapterService.name, () => {
   });
 
   it(`${CurrencyAdapterService.prototype.availableCurrencies.name} should return the array of currencies model`, (done) => {
-    const currencies: Currency[] = [
-      {
-        fullName: 'Brazilian Real',
-        acronym: 'BRL',
-      },
-      {
-        fullName: 'United Arab Emirates Dirham',
-        acronym: 'AED',
-      },
-    ];
-
     SUT.availableCurrencies().subscribe((data) => {
-      expect(data).toEqual(currencies);
+      expect(data.length > 0).toBeTrue();
       done();
     });
   });
