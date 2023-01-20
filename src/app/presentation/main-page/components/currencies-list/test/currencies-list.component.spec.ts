@@ -79,6 +79,12 @@ describe(CurrenciesListComponent.name, () => {
     expect(component.currenciesListPaginated.length).toBe(1);
   });
 
+  it(`${CurrenciesListComponent.name} Should render the pagination correctly`, () => {
+    expect(component.currenciesListPaginated.length).toBeLessThanOrEqual(
+      component.currenciesPerPage
+    );
+  });
+
   it(`${CurrenciesListComponent.name} (D) Should render all the currencies available in the page`, () => {
     const SUT = fixture.nativeElement
       .querySelector('tbody')
@@ -87,5 +93,10 @@ describe(CurrenciesListComponent.name, () => {
     expect(SUT.length > 0)
       .withContext(`The length of the currencies is: ${SUT.length}`)
       .toBeTrue();
+  });
+
+  it(`${CurrenciesListComponent.name} (D) Should render the pagination correctly`, () => {
+    const links = fixture.nativeElement.querySelectorAll('.page-link');
+    expect(links.length).toBe(2);
   });
 });
