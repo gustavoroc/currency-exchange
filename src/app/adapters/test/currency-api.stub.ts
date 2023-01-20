@@ -14,6 +14,34 @@ export class CurrencyApiStub implements CurrencyApiService {
         description: 'United Arab Emirates Dirham',
         code: 'AED',
       },
+      ZWT: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
+      TWT: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
+      QWE: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
+      EQWE: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
+      QWQE: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
+      QEWE: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
+      QW3E: {
+        description: 'United Arab Emirates Dirham',
+        code: 'AED',
+      },
     };
 
     return of(response);
