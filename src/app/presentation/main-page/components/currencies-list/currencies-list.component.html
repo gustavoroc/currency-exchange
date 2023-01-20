@@ -1,0 +1,32 @@
+<div class="card w-100 shadow-sm fixed-bottom">
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Codigo</th>
+          <th scope="col">Descricao</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="currenciesListPaginated">
+        <tr *ngFor="let currency of currenciesListPaginated">
+          <td>{{ currency.acronym }}</td>
+          <td>{{ currency.fullName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer d-flex align-items-center justify-content-center p-3">
+    <ul class="pagination mb-0">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
