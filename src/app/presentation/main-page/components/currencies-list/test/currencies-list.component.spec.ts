@@ -78,4 +78,14 @@ describe(CurrenciesListComponent.name, () => {
     component.setPaginatedList();
     expect(component.currenciesListPaginated.length).toBe(1);
   });
+
+  it(`${CurrenciesListComponent.name} (D) Should render all the currencies available in the page`, () => {
+    const SUT = fixture.nativeElement
+      .querySelector('tbody')
+      .querySelectorAll('td');
+
+    expect(SUT.length > 0)
+      .withContext(`The length of the currencies is: ${SUT.length}`)
+      .toBeTrue();
+  });
 });
