@@ -18,12 +18,23 @@
   <div class="card-footer d-flex align-items-center justify-content-center p-3">
     <ul class="pagination mb-0">
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
+        <a
+          class="page-link"
+          href="#"
+          aria-label="Previous"
+          id="backwards-btn"
+          (click)="setPage(false)"
+        >
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
+        <a
+          class="page-link"
+          aria-label="Next"
+          id="forward-btn"
+          (click)="setPage(true)"
+        >
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

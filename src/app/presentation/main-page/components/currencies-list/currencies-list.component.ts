@@ -5,7 +5,7 @@ import { CurrencyService } from 'src/app/usecases/currency-adapter-service.useca
 
 @Component({
   templateUrl: './currencies-list.component.html',
-  selector: 'app-c-list',
+  selector: 'app-currencies-list',
 })
 export class CurrenciesListComponent implements OnInit {
   currenciesList!: Currency[];
@@ -21,8 +21,8 @@ export class CurrenciesListComponent implements OnInit {
   ngOnInit(): void {
     this.currencyService.availableCurrencies().subscribe((currencies) => {
       this.currenciesList = currencies;
+      this.setPaginatedList();
     });
-    this.setPaginatedList();
   }
 
   setPaginatedList(): void {
@@ -31,9 +31,14 @@ export class CurrenciesListComponent implements OnInit {
 
     const currencyListCopy = [...this.currenciesList];
 
-    this.currenciesListPaginated = currencyListCopy.splice(
+    this.currenciesListPaginated = currencyListCopy.slice(
       currentPageIndex,
       currentPageIndex + this.currenciesPerPage
     );
+  }
+
+  setPage(forwards: boolean) {
+    forwards ? this.currenciesCurrentPage++ : this.currenciesCurrentPage--;
+    this.setPaginatedList();
   }
 }
