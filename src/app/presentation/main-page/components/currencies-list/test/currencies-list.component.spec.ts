@@ -99,4 +99,40 @@ describe(CurrenciesListComponent.name, () => {
     const links = fixture.nativeElement.querySelectorAll('.page-link');
     expect(links.length).toBe(2);
   });
+
+  it(`${CurrenciesListComponent.name} (D) Should paginate the list of currencies when the pagination forward is clicked`, () => {
+    const forwardPaginationButton: HTMLElement =
+      fixture.nativeElement.querySelector('#forward-btn');
+
+    forwardPaginationButton.click();
+    fixture.detectChanges();
+
+    expect(component.currenciesCurrentPage).toBe(1);
+  });
+
+  it(`${CurrenciesListComponent.name} (D) Should paginate the list of currencies, when the pagination forward is clicked, with different content`, () => {
+    const forwardPaginationButton: HTMLElement =
+      fixture.nativeElement.querySelector('#forward-btn');
+
+    const previousPageContent = component.currenciesListPaginated;
+
+    forwardPaginationButton.click();
+
+    const afterClickPageContent = component.currenciesListPaginated;
+
+    expect(previousPageContent == afterClickPageContent).toBeFalse();
+  });
+
+  it(`${CurrenciesListComponent.name} (D) Should paginate the list of currencies, when the pagination backwards is clicked, with different content`, () => {
+    const forwardPaginationButton: HTMLElement =
+      fixture.nativeElement.querySelector('#backwards-btn');
+
+    const previousPageContent = component.currenciesListPaginated;
+
+    forwardPaginationButton.click();
+
+    const afterClickPageContent = component.currenciesListPaginated;
+
+    expect(previousPageContent == afterClickPageContent).toBeFalse();
+  });
 });
