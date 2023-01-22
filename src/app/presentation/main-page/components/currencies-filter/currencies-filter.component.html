@@ -1,0 +1,13 @@
+<div class="mt-3 px-4 row height d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="form">
+        <i class="bi bi-search"></i>
+        <input 
+          type="text" 
+          class="form-control form-input" 
+          placeholder="Ex: BRL.. Brazilian Real"
+          (input)="emitFilteredValue($event)"
+          >
+      </div>
+    </div>
+</div>
