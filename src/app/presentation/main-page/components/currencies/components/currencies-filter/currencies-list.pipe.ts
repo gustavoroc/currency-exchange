@@ -9,7 +9,7 @@ export class FilterPipe implements PipeTransform {
   transform(items: Currency[], searchText: string): any[] {
     if(!items) return [];
     if(!searchText) return items;
-    searchText = searchText.toLowerCase();
+    searchText = searchText.toLowerCase().trim();
     return items.filter( currency => {
       const condition_1 = currency.acronym.toLowerCase().includes(searchText)
       const condition_2 = currency.fullName.toLowerCase().includes(searchText)

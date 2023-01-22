@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CurrenciesListModule } from './components/currencies-list/currencies-list.module';
+import { CurrencyAdapterModule } from 'src/app/adapters/currency-adapter.module';
+import { CurrenciesModule } from './components/currencies/currencies.module';
 import { MainPageComponent } from './main-page.component';
 
 @NgModule({
   declarations: [MainPageComponent],
-  imports: [CurrenciesListModule],
+  exports: [MainPageComponent],
+  imports: [CurrenciesModule, CurrencyAdapterModule],
 })
 export class MainPageModule {}

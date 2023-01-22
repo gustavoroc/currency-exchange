@@ -1,0 +1,23 @@
+<div class="card w-100 shadow-lg fixed-bottom" 
+    *ngIf="currencies | filterCurrencies: currencyFilter
+                      | paginateCurrencies: paginationQuery
+          as processedCurrencies"
+>
+    <app-currencies-filter (filterEvent)="handleFilterEvent($event)">
+    </app-currencies-filter>
+    <hr>
+    <div class="card-body">
+        <app-currencies-table
+         [currenciesList]="processedCurrencies"
+         (emitSelectedCurrency)="handleSelectedCurrency($event)"
+        >
+        </app-currencies-table>
+    </div>
+    <app-pagination 
+    [currenciesListLength]="currencies.length"
+    [processedCurrenciesListLength]="processedCurrencies.length"
+    (currenciesCurrentPageEvent)="handlePaginationCurrentPageEvent($event)"
+    (currenciesPerPageEvent)="handleCurrenciesPerPageEvent($event)"
+    >
+    </app-pagination>
+</div>
