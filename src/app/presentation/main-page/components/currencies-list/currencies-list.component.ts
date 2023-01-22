@@ -6,12 +6,15 @@ import { CurrencyService } from 'src/app/usecases/currency-adapter-service.useca
 @Component({
   templateUrl: './currencies-list.component.html',
   selector: 'app-currencies-list',
+  styleUrls: ['./currencies-list.component.css']
 })
 export class CurrenciesListComponent implements OnInit {
   currenciesList!: Currency[];
   currenciesListPaginated!: Currency[];
   currenciesPerPage: number = 5;
   currenciesCurrentPage: number = 0;
+  selectedCurrency?: Currency;
+  filterCurrenciesParam: string = ''
 
   constructor(
     @Inject(CurrencyAdapterInterfaceToken)
@@ -27,8 +30,8 @@ export class CurrenciesListComponent implements OnInit {
 
   setPaginatedList(): void {
     const currentPageIndex =
-      this.currenciesCurrentPage * this.currenciesPerPage;
-
+    this.currenciesCurrentPage * this.currenciesPerPage;
+  
     const currencyListCopy = [...this.currenciesList];
 
     this.currenciesListPaginated = currencyListCopy.slice(
@@ -40,5 +43,18 @@ export class CurrenciesListComponent implements OnInit {
   setPage(forwards: boolean) {
     forwards ? this.currenciesCurrentPage++ : this.currenciesCurrentPage--;
     this.setPaginatedList();
+  }
+
+  setCurrenciesPerPage(numberOfCurrencies: number) {
+    this.currenciesPerPage = numberOfCurrencies
+    this.setPaginatedList()
+  }
+
+  selectCurrency(currency: Currency) {
+    this.selectedCurrency = currency
+  }
+
+  filterCurrency(e: Event) {
+   this.filterCurrenciesParam = (e as InputEvent).data!
   }
 }

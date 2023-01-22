@@ -1,4 +1,18 @@
-<div class="card w-100 shadow-sm fixed-bottom">
+<div class="card w-100 shadow-lg fixed-bottom">
+  <div class="mt-3 px-4 row height d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="form">
+        <i class="bi bi-search"></i>
+        <input 
+          type="text" 
+          class="form-control form-input" 
+          placeholder="Ex: BRL.. Brazilian Real"
+          (input)="filterCurrency($event)"
+          >
+      </div>
+    </div>
+  </div>
+  <hr>
   <div class="card-body">
     <table class="table table-hover">
       <thead>
@@ -8,36 +22,78 @@
         </tr>
       </thead>
       <tbody *ngIf="currenciesListPaginated">
-        <tr *ngFor="let currency of currenciesListPaginated">
+        <tr *ngFor="let currency of currenciesListPaginated | filterCurrencies: filterCurrenciesParam" 
+             (click)="selectCurrency(currency)"
+             [ngClass]="{'table-active': selectedCurrency?.acronym == currency.acronym}"
+        >
           <td>{{ currency.acronym }}</td>
           <td>{{ currency.fullName }}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="card-footer d-flex align-items-center justify-content-center p-3">
+  <div class="card-footer d-flex align-items-center justify-content-center p-3 gap-3">
     <ul class="pagination mb-0">
       <li class="page-item">
-        <a
-          class="page-link"
-          href="#"
+        <button
+          class="page-link cursor-pointer"
+          style="cursor: pointer;"
           aria-label="Previous"
           id="backwards-btn"
+          [disabled]="(currenciesCurrentPage * currenciesPerPage) == 0"
           (click)="setPage(false)"
         >
           <span aria-hidden="true">&laquo;</span>
-        </a>
+        </button>
       </li>
       <li class="page-item">
-        <a
-          class="page-link"
+        <button
+          class="page-link cursor-pointer"
+          style="cursor: pointer;"
           aria-label="Next"
           id="forward-btn"
+          [disabled]="(currenciesList ? currenciesList.length : 0) <= (currenciesCurrentPage * currenciesPerPage) + currenciesPerPage"
           (click)="setPage(true)"
         >
           <span aria-hidden="true">&raquo;</span>
-        </a>
+        </button>
       </li>
     </ul>
+    <div class="d-flex align-items-center gap-3">
+      <small class="fw-light" *ngIf="currenciesList?.length">
+        {{currenciesCurrentPage * currenciesPerPage}}
+         -
+        {{(currenciesCurrentPage * currenciesPerPage) + currenciesPerPage}}
+        de
+        {{currenciesList.length }}
+      </small>
+        <div class="dropup">
+          <a class="btn btn-secondary btn-sm dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Items por pagina
+          </a>
+        
+          <ul class="dropdown-menu">
+            <li>
+            <a 
+              class="dropdown-item cursor-pointer" 
+              [ngClass]="{'active': currenciesPerPage == 5}"
+              (click)="setCurrenciesPerPage(5)">
+              5
+            </a>
+            <a 
+              class="dropdown-item cursor-pointer" 
+              [ngClass]="{'active': currenciesPerPage == 7}"
+              (click)="setCurrenciesPerPage(7)">
+              7
+            </a>
+            <a 
+              class="dropdown-item cursor-pointer" 
+              [ngClass]="{'active': currenciesPerPage == 10}"
+              (click)="setCurrenciesPerPage(10)">
+              10
+            </a>
+          </ul>
+        </div>
+    </div>
   </div>
 </div>
