@@ -1,9 +1,14 @@
-<div class="container d-flex flex-column gap-5">
-    <div>
-        <h1 class="display-3 fw-bold">Currency Exchange.</h1>
+<div class="container d-flex flex-column gap-3">
+  <div>
+    <h1 class="display-3 fw-bold">Currency Exchange.</h1>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <div>
+    <div class="card-footer d-flex align-items-center justify-content-center">
+      <span class="fw-lighter">Deseja ver seu historico? </span>
+      <button type="button" class="btn btn-link">Clique aqui.</button>
     </div>
-    <div>
-        <router-outlet></router-outlet>
-    </div>
+  </div>
 </div>
-

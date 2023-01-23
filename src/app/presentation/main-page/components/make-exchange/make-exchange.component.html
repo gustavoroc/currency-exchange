@@ -1,4 +1,7 @@
-<div class="card-body" *ngIf="processedExchangeData">
+<div
+  class="card-body"
+  *ngIf="processedExchangeData && !isLoading; else loading"
+>
   <h5 class="card-title">
     {{ processedExchangeData.valueFrom }}
     {{ processedExchangeData.currencyFrom }} =
@@ -10,3 +13,11 @@
     >Ultima atualizacao: {{ processedExchangeData.date }}</span
   >
 </div>
+
+<ng-template #loading>
+  <div class="text-center p-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</ng-template>

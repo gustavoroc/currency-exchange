@@ -12,6 +12,7 @@ import { Currency } from 'src/app/models/currency.model';
 @Component({
   selector: 'app-select-exchange',
   templateUrl: './select-exchange.component.html',
+  styleUrls: ['./select-exchange.component.css'],
 })
 export class SelectExchangeComponent {
   constructor(private renderer: Renderer2) {}

@@ -18,6 +18,7 @@ export interface ExchangeData {
 export class MakeExchangeComponent implements OnChanges {
   @Input() exchangeData!: ExchangeData;
   processedExchangeData?: CurrencyExchange;
+  isLoading: boolean = false;
 
   constructor(
     @Inject(CurrencyAdapterInterfaceToken)
@@ -25,7 +26,7 @@ export class MakeExchangeComponent implements OnChanges {
   ) {}
 
   ngOnChanges(): void {
-    console.log(this.exchangeData);
+    this.isLoading = true;
     this.currencyService
       .calculateCurrencyExchange(
         this.exchangeData.currencies.from.acronym,
@@ -33,6 +34,7 @@ export class MakeExchangeComponent implements OnChanges {
         this.exchangeData.value
       )
       .subscribe((currencyExchange) => {
+        this.isLoading = false;
         this.processedExchangeData = currencyExchange;
       });
   }

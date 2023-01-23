@@ -15,15 +15,23 @@
   </div>
 </div>
 
-<div class="card mt-5 row" *ngIf="exchangeValue && fromCurrency && toCurrency">
+<div
+  class="card mt-5 row"
+  *ngIf="exchangeValue && fromCurrency && toCurrency; else elseBlock"
+>
   <app-make-exchange
     [exchangeData]="{
       currencies: { to: toCurrency, from: fromCurrency },
       value: exchangeValue
     }"
   ></app-make-exchange>
-  <div class="card-footer d-flex align-items-center justify-content-center">
-    <span class="fw-lighter">Deseja ver seu historico? </span>
-    <button type="button" class="btn btn-link">Clique aqui.</button>
-  </div>
 </div>
+
+<ng-template #elseBlock>
+  <div
+    class="mt-5 fw-light text-center align-items-center justify-content-center text-danger"
+  >
+    <i class="bi bi-exclamation-triangle"></i>
+    <span> Porfavor, selecione as moedas e o valor que deseja. </span>
+  </div>
+</ng-template>
