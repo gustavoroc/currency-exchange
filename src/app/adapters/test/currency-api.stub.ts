@@ -56,7 +56,7 @@ export class CurrencyApiStub implements CurrencyApiService {
       info: {
         rate: 0.923499,
       },
-      date: '2023-01-17',
+      date: '2023-01-23',
       result: 46.174937,
     };
 

@@ -18,7 +18,9 @@
     <input
       type="text"
       class="form-control"
+      [disabled]="modalTarget == 'to-currency'"
       aria-label="Dollar amount (with dot and two decimal places)"
+      (input)="dealWithInputExchangeEvent($event)"
     />
   </div>
 </div>
@@ -33,7 +35,7 @@
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content">
       <app-currencies
-        (emitSelectedCurrency)="selectedCurrency = $event"
+        (emitSelectedCurrency)="dealWithSelectedCurrencyEvent($event)"
       ></app-currencies>
     </div>
   </div>

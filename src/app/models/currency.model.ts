@@ -9,4 +9,5 @@ export interface CurrencyExchange {
   currencyTo: string;
   valueTo: number;
   rate: number;
+  date: string;
 }

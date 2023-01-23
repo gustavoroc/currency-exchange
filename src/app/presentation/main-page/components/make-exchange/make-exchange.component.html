@@ -1,7 +1,12 @@
-<div class="card-body">
-  <h5 class="card-title">1 BRL =</h5>
-  <p class="card-text">0,19 USD (EUA)</p>
+<div class="card-body" *ngIf="processedExchangeData">
+  <h5 class="card-title">
+    {{ processedExchangeData.valueFrom }}
+    {{ processedExchangeData.currencyFrom }} =
+  </h5>
+  <p class="card-text">
+    {{ processedExchangeData.valueTo }} {{ processedExchangeData.currencyTo }}
+  </p>
   <span class="fw-lighter text-muted"
-    >Ultima atualizacao: 22/03/22 as 15:43</span
+    >Ultima atualizacao: {{ processedExchangeData.date }}</span
   >
 </div>
