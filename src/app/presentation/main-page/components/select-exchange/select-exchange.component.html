@@ -1,0 +1,40 @@
+<button
+  type="button"
+  class="btn btn-primary w-100"
+  data-bs-toggle="modal"
+  data-bs-target="#currencyToModal"
+  #modalBtn
+>
+  {{
+    selectedCurrency
+      ? "Moeda Selecionada: " + selectedCurrency.acronym
+      : "Selecione um moeda.."
+  }}
+</button>
+
+<div class="card-body">
+  <div class="input-group mb-3">
+    <span class="input-group-text">$</span>
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Dollar amount (with dot and two decimal places)"
+    />
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  [id]="modalTarget"
+  tabindex="-1"
+  aria-labelledby="List of currencies"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <app-currencies
+        (emitSelectedCurrency)="selectedCurrency = $event"
+      ></app-currencies>
+    </div>
+  </div>
+</div>

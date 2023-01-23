@@ -1,3 +1,5 @@
+import { Output } from "@angular/core";
+import { EventEmitter } from "@angular/core";
 import { Component, Inject, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { CurrencyAdapterInterfaceToken } from "src/app/injection-tokens/currency-adapter-service.di.token";
@@ -19,6 +21,7 @@ export class CurrenciesComponent implements OnInit {
         start: 0,
         finish: 5
     }
+    @Output() emitSelectedCurrency = new EventEmitter<Currency>
 
     constructor(
         @Inject(CurrencyAdapterInterfaceToken)
@@ -33,6 +36,7 @@ export class CurrenciesComponent implements OnInit {
 
     handleSelectedCurrency(currency: Currency) {
         this.selectedCurrency = currency
+        this.emitSelectedCurrency.emit(currency)
     }
 
     handlePaginationCurrentPageEvent(currentPageEventData: number) {
