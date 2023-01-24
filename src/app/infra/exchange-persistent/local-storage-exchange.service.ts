@@ -8,9 +8,10 @@ export class LocalStorageExchangeService
 
   addASingleExchange(exchange: CurrencyExchange): void {
     const exchanges = this.getAll();
+    exchanges.push(exchange);
     localStorage.setItem(
       LocalStorageExchangeService.CURRENCY_EXCHANGE_KEY,
-      JSON.stringify(exchanges.push(exchange))
+      JSON.stringify(exchanges)
     );
   }
 
@@ -18,13 +19,15 @@ export class LocalStorageExchangeService
     const exchangeString = localStorage.getItem(
       LocalStorageExchangeService.CURRENCY_EXCHANGE_KEY
     );
+
     return exchangeString ? JSON.parse(exchangeString) : [];
   }
 
   add(exchange: CurrencyExchange[]): void {
+    const exchanges = this.getAll();
     localStorage.setItem(
       LocalStorageExchangeService.CURRENCY_EXCHANGE_KEY,
-      JSON.stringify(exchange)
+      JSON.stringify([...exchanges, ...exchange])
     );
   }
 
