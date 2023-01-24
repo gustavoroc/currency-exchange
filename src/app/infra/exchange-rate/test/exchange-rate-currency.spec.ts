@@ -46,7 +46,7 @@ describe(ExchangeRateCurrencyService.name, () => {
     };
 
     SUT.convertExchange('EUR', 'USD', 50).subscribe((data) => {
-      expect(data).toEqual(mockedCurrencyExchange);
+      expect(data.result).toEqual(mockedCurrencyExchange.result);
       done();
     });
 
