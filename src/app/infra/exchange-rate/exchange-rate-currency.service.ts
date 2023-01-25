@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 import { CurrencyApiService } from 'src/app/usecases/currency-api.service.usecase';
 import { environment } from 'src/environments/environment';
 
@@ -31,6 +32,7 @@ export class ExchangeRateCurrencyService implements CurrencyApiService {
             info,
             date,
             result,
+            id: uuidv4(),
           };
         })
       );

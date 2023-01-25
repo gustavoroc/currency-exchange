@@ -1,1 +1,44 @@
-History page!
+<div class="mat-elevation-z8" *ngIf="dataSource">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Data da Conversao</th>
+      <td mat-cell *matCellDef="let currency">{{ currency.date }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="valueFrom">
+      <th mat-header-cell *matHeaderCellDef>Valor Informado</th>
+      <td mat-cell *matCellDef="let currency">{{ currency.valueFrom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="currencyFrom">
+      <th mat-header-cell *matHeaderCellDef>Moeda Selecionada</th>
+      <td mat-cell *matCellDef="let currency">{{ currency.currencyFrom }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="currencyTo">
+      <th mat-header-cell *matHeaderCellDef>Moeda Convertida</th>
+      <td mat-cell *matCellDef="let currency">{{ currency.currencyTo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="valueTo">
+      <th mat-header-cell *matHeaderCellDef>Taxa</th>
+      <td mat-cell *matCellDef="let currency">{{ currency.valueTo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef>Resultado</th>
+      <td mat-cell *matCellDef="let currency">{{ currency.rate }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>

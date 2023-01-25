@@ -10,4 +10,5 @@ export interface CurrencyExchange {
   valueTo: number;
   rate: number;
   date: string;
+  id?: string;
 }

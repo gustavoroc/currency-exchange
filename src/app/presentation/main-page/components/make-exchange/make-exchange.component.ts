@@ -1,7 +1,10 @@
 import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
+import { CurrencyPersistentInterfaceServiceToken } from 'src/app/injection-tokens/currency-persistent.service.di.token';
 import { Currency, CurrencyExchange } from 'src/app/models/currency.model';
 import { CurrencyService } from 'src/app/usecases/currency-adapter-service.usecase';
+import { CurrencyExchangePersistentService } from 'src/app/usecases/currency-persistent.service.usecase';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface ExchangeData {
   currencies: {
@@ -22,7 +25,9 @@ export class MakeExchangeComponent implements OnChanges {
 
   constructor(
     @Inject(CurrencyAdapterInterfaceToken)
-    private currencyService: CurrencyService
+    private currencyService: CurrencyService,
+    @Inject(CurrencyPersistentInterfaceServiceToken)
+    private currencyPersistentService: CurrencyExchangePersistentService
   ) {}
 
   ngOnChanges(): void {
@@ -35,7 +40,14 @@ export class MakeExchangeComponent implements OnChanges {
       )
       .subscribe((currencyExchange) => {
         this.isLoading = false;
-        this.processedExchangeData = currencyExchange;
+        this.processedExchangeData = { ...currencyExchange, id: uuidv4() };
+        if (!this.currencyPersistentService.getAll()) {
+          this.currencyPersistentService.add([this.processedExchangeData]);
+        } else {
+          this.currencyPersistentService.addASingleExchange(
+            this.processedExchangeData
+          );
+        }
       });
   }
 }
