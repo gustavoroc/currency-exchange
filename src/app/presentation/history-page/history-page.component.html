@@ -1,1 +1,5 @@
-History page!
+<div *ngIf="persistedExchanges">
+  <p *ngFor="let exchange of persistedExchanges">
+    {{ exchange.id }}
+  </p>
+</div>
