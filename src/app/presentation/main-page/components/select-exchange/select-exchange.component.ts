@@ -3,10 +3,12 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { debounceTime, Subject } from 'rxjs';
 import { Currency } from 'src/app/models/currency.model';
 
 @Component({
@@ -14,7 +16,7 @@ import { Currency } from 'src/app/models/currency.model';
   templateUrl: './select-exchange.component.html',
   styleUrls: ['./select-exchange.component.css'],
 })
-export class SelectExchangeComponent {
+export class SelectExchangeComponent implements OnInit {
   constructor(private renderer: Renderer2) {}
 
   @ViewChild('modalBtn') modalBtn?: ElementRef;
@@ -25,6 +27,7 @@ export class SelectExchangeComponent {
     type: string;
   }>();
   selectedCurrency?: Currency;
+  debounce = new Subject<number>();
 
   ngAfterViewInit() {
     this.renderer.setAttribute(
@@ -34,12 +37,18 @@ export class SelectExchangeComponent {
     );
   }
 
+  ngOnInit() {
+    this.debounce.pipe(debounceTime(500)).subscribe((inputValue) => {
+      this.emitExchangeValue.emit({
+        value: inputValue,
+        type: this.modalTarget!,
+      });
+    });
+  }
+
   dealWithInputExchangeEvent(e: Event) {
     const value = parseInt((e.target as HTMLInputElement).value);
-    this.emitExchangeValue.emit({
-      value,
-      type: this.modalTarget!,
-    });
+    this.debounce.next(value);
   }
 
   dealWithSelectedCurrencyEvent(currency: Currency) {
