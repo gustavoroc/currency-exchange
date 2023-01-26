@@ -12,6 +12,7 @@ import { CurrencyExchangePersistentService } from 'src/app/usecases/currency-per
 @Component({
   templateUrl: './history-page.component.html',
   selector: 'app-history-page',
+  styleUrls: ['./history-page.component.css'],
 })
 export class HistoryPageComponent implements OnInit {
   persistedExchanges?: CurrencyExchange[];
@@ -56,8 +57,10 @@ export class HistoryPageComponent implements OnInit {
           parseInt(splittedDate[0])
         );
         return formattedDate.getTime();
-      } else {
+      } else if (property == 'time') {
         return item.time;
+      } else {
+        return item.valueTo;
       }
     };
   }

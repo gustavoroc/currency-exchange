@@ -37,38 +37,35 @@ export class MakeExchangeComponent implements OnChanges {
     this.currencyService
       .calculateCurrencyExchange(
         this.exchangeData.currencies.from.acronym,
-        this.exchangeData.currencies.to.acronym,
+        'USD',
         this.exchangeData.value
       )
-      .pipe(
-        tap((exchange) => {
-          this.currencyService
-            .calculateCurrencyExchange(
-              exchange.currencyFrom,
-              'USD',
-              exchange.valueFrom
-            )
-            .subscribe((exchange) => {
-              if (exchange.valueTo > 10000) {
-                this.isHigherThan10000k = true;
-              }
-            });
-        })
-      )
-      .subscribe((currencyExchange) => {
-        this.isLoading = false;
-        this.processedExchangeData = {
-          ...currencyExchange,
-          id: uuidv4(),
-          isHigherThan10000k: this.isHigherThan10000k,
-        };
-        if (!this.currencyPersistentService.getAll()) {
-          this.currencyPersistentService.add([this.processedExchangeData]);
-        } else {
-          this.currencyPersistentService.addASingleExchange(
-            this.processedExchangeData
-          );
+      .subscribe((exchange) => {
+        if (exchange.valueTo > 10000) {
+          this.isHigherThan10000k = true;
         }
+        this.currencyService
+          .calculateCurrencyExchange(
+            this.exchangeData.currencies.from.acronym,
+            this.exchangeData.currencies.to.acronym,
+            this.exchangeData.value
+          )
+          .subscribe((currencyExchange) => {
+            this.isLoading = false;
+            this.processedExchangeData = {
+              ...currencyExchange,
+              id: uuidv4(),
+              isHigherThan10000k: this.isHigherThan10000k,
+            };
+            console.log(this.processedExchangeData);
+            if (!this.currencyPersistentService.getAll()) {
+              this.currencyPersistentService.add([this.processedExchangeData]);
+            } else {
+              this.currencyPersistentService.addASingleExchange(
+                this.processedExchangeData
+              );
+            }
+          });
       });
   }
 }
