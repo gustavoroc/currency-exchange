@@ -22,6 +22,7 @@ export class HistoryPageComponent implements OnInit {
     'valueTo',
     'rate',
     'date',
+    'time',
     'Acoes',
   ];
 
