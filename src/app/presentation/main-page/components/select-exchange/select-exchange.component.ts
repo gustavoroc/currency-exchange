@@ -8,7 +8,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { debounceTime, Subject } from 'rxjs';
+import { debounceTime, filter, Subject } from 'rxjs';
 import { Currency } from 'src/app/models/currency.model';
 
 @Component({
@@ -38,12 +38,19 @@ export class SelectExchangeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.debounce.pipe(debounceTime(500)).subscribe((inputValue) => {
-      this.emitExchangeValue.emit({
-        value: inputValue,
-        type: this.modalTarget!,
+    this.debounce
+      .pipe(
+        filter((data) =>
+          /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/.test(data.toString())
+        ),
+        debounceTime(500)
+      )
+      .subscribe((inputValue) => {
+        this.emitExchangeValue.emit({
+          value: inputValue,
+          type: this.modalTarget!,
+        });
       });
-    });
   }
 
   dealWithInputExchangeEvent(e: Event) {

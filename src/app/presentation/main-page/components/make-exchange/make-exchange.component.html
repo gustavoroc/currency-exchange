@@ -9,9 +9,14 @@
   <p class="card-text">
     {{ processedExchangeData.valueTo }} {{ processedExchangeData.currencyTo }}
   </p>
-  <span class="fw-lighter text-muted"
-    >Ultima atualizacao: {{ processedExchangeData.date }}</span
-  >
+  <div class="d-flex gap-3">
+    <span class="fw-lighter text-muted"
+      >Ultima atualizacao: {{ processedExchangeData.date }}</span
+    >
+    <span class="fw-lighter text-muted"
+      >Taxa utilizada: {{ processedExchangeData.rate }}</span
+    >
+  </div>
 </div>
 
 <ng-template #loading>

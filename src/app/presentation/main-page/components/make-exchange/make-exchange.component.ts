@@ -1,5 +1,4 @@
 import { Component, Inject, Input, OnChanges } from '@angular/core';
-import { tap } from 'rxjs';
 import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
 import { CurrencyPersistentInterfaceServiceToken } from 'src/app/injection-tokens/currency-persistent.service.di.token';
 import { Currency, CurrencyExchange } from 'src/app/models/currency.model';
