@@ -48,7 +48,8 @@ export class CurrencyAdapterService implements CurrencyService {
           currencyTo: query.to,
           valueTo: result,
           rate: info.rate,
-          date: date,
+          date: new Date().toLocaleDateString(),
+          time: new Date().toLocaleTimeString(),
         };
 
         return currencyExchange;
