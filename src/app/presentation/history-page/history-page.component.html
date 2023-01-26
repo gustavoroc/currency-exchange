@@ -1,6 +1,5 @@
-<div class="mat-elevation-z8" *ngIf="dataSource">
+<div class="mat-elevation-z8" *ngIf="dataSource && dataSource.data">
   <table mat-table [dataSource]="dataSource">
-    <!-- Name Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef>Data da Conversao</th>
       <td mat-cell *matCellDef="let currency">{{ currency.date }}</td>
@@ -29,6 +28,20 @@
     <ng-container matColumnDef="rate">
       <th mat-header-cell *matHeaderCellDef>Resultado</th>
       <td mat-cell *matCellDef="let currency">{{ currency.rate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acoes">
+      <th mat-header-cell *matHeaderCellDef>Acoes</th>
+      <td mat-cell *matCellDef="let currency">
+        <i
+          class="btn btn-link bi bi-trash3"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#selector-' + currency.id"
+        ></i>
+        <app-delete-exchange-modal
+          [currencyId]="currency.id"
+        ></app-delete-exchange-modal>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

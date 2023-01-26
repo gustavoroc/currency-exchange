@@ -1,0 +1,27 @@
+<div
+  class="modal fade"
+  [id]="'selector-' + currencyId"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-5">
+      <div class="modal-body">
+        <h3 class="text-center">Você está certo disso?</h3>
+        <p class="fw-light">
+          O item de id <var>"{{ currencyId }}" </var> será
+          <span class="text-danger">deletado permanentemente</span> do seu
+          histórico de conversões."
+        </p>
+        <button class="btn btn-primary w-100 mb-2 mt-3">Voltar</button>
+        <button
+          class="btn btn-danger w-100"
+          (click)="deletePersistedExchange()"
+        >
+          Deletar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {
-  MatTable,
   MatTableDataSource,
   _MatTableDataSource,
 } from '@angular/material/table';
@@ -15,7 +14,7 @@ import { CurrencyExchangePersistentService } from 'src/app/usecases/currency-per
 })
 export class HistoryPageComponent implements OnInit {
   persistedExchanges?: CurrencyExchange[];
-  dataSource: MatTableDataSource<CurrencyExchange>;
+  dataSource?: MatTableDataSource<CurrencyExchange>;
   displayedColumns = [
     'currencyFrom',
     'valueFrom',
@@ -23,23 +22,19 @@ export class HistoryPageComponent implements OnInit {
     'valueTo',
     'rate',
     'date',
+    'Acoes',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.persistedExchanges);
-    this.dataSource.paginator = this.paginator;
-  }
-
   constructor(
     @Inject(CurrencyPersistentInterfaceServiceToken)
     private currencyPersistentService: CurrencyExchangePersistentService
-  ) {
-    this.dataSource = new MatTableDataSource(this.persistedExchanges);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.persistedExchanges = this.currencyPersistentService.getAll();
+    this.dataSource = new MatTableDataSource(this.persistedExchanges);
+    this.dataSource.paginator = this.paginator;
   }
 }
