@@ -33,14 +33,8 @@ export class HistoryPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currencyPersistentService.currenciesExchange.subscribe((data) => {
-      this.persistedExchanges = data;
-      this.dataSource = new MatTableDataSource(this.persistedExchanges);
-      this.dataSource.paginator = this.paginator;
-    });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource!.paginator = this.paginator;
+    this.persistedExchanges = this.currencyPersistentService.getAll();
+    this.dataSource = new MatTableDataSource(this.persistedExchanges);
+    this.dataSource.paginator = this.paginator;
   }
 }
