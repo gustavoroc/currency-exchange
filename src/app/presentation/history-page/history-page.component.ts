@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import {
   MatTableDataSource,
   _MatTableDataSource,
@@ -26,6 +27,7 @@ export class HistoryPageComponent implements OnInit {
     'Acoes',
   ];
 
+  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -43,5 +45,20 @@ export class HistoryPageComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource!.paginator = this.paginator;
+    this.dataSource!.sort = this.sort;
+    this.dataSource!.sortingDataAccessor = (item, property) => {
+      if (property == 'date') {
+        const dateString = item.date;
+        const splittedDate = dateString.split('/');
+        const formattedDate = new Date(
+          parseInt(splittedDate[2]),
+          parseInt(splittedDate[1]),
+          parseInt(splittedDate[0])
+        );
+        return formattedDate.getTime();
+      } else {
+        return item.time;
+      }
+    };
   }
 }
