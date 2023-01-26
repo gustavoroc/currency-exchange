@@ -12,4 +12,5 @@ export interface CurrencyExchange {
   date: string;
   time: string;
   id?: string;
+  isHigherThan10000k?: boolean;
 }
