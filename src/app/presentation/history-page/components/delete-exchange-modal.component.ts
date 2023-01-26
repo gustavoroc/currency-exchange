@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, ElementRef, Inject, Input } from '@angular/core';
 import { CurrencyPersistentInterfaceServiceToken } from 'src/app/injection-tokens/currency-persistent.service.di.token';
 import { CurrencyExchangePersistentService } from 'src/app/usecases/currency-persistent.service.usecase';
 
@@ -8,6 +8,7 @@ import { CurrencyExchangePersistentService } from 'src/app/usecases/currency-per
 })
 export class DeleteExchangeModal {
   @Input() currencyId?: string;
+  @Input() closeModalBtn?: HTMLElement;
 
   constructor(
     @Inject(CurrencyPersistentInterfaceServiceToken)
@@ -18,5 +19,6 @@ export class DeleteExchangeModal {
     if (this.currencyId) {
       this.currencyPersistentService.delete(this.currencyId);
     }
+    this.closeModalBtn?.click();
   }
 }
