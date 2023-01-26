@@ -37,9 +37,11 @@
           class="btn btn-link bi bi-trash3"
           data-bs-toggle="modal"
           [attr.data-bs-target]="'#selector-' + currency.id"
+          #closeModalBtn
         ></i>
         <app-delete-exchange-modal
           [currencyId]="currency.id"
+          [closeModalBtn]="closeModalBtn"
         ></app-delete-exchange-modal>
       </td>
     </ng-container>
