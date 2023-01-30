@@ -5,11 +5,12 @@ import {
   Input,
   OnInit,
   Output,
-  Renderer2,
   ViewChild,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { debounceTime, filter, Subject } from 'rxjs';
 import { Currency } from 'src/app/models/currency.model';
+import { CurrenciesComponent } from '../currencies/currencies.component';
 
 @Component({
   selector: 'app-select-exchange',
@@ -17,7 +18,7 @@ import { Currency } from 'src/app/models/currency.model';
   styleUrls: ['./select-exchange.component.css'],
 })
 export class SelectExchangeComponent implements OnInit {
-  constructor(private renderer: Renderer2) {}
+  constructor(public dialog: MatDialog) {}
 
   @ViewChild('modalBtn') modalBtn?: ElementRef;
   @Input() modalTarget?: string;
@@ -29,12 +30,20 @@ export class SelectExchangeComponent implements OnInit {
   selectedCurrency?: Currency;
   debounce = new Subject<number>();
 
-  ngAfterViewInit() {
-    this.renderer.setAttribute(
-      this.modalBtn?.nativeElement,
-      'data-bs-target',
-      '#' + this.modalTarget
-    );
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialog
+      .open(CurrenciesComponent, {
+        enterAnimationDuration,
+        exitAnimationDuration,
+      })
+      .afterClosed()
+      .subscribe((result: Currency) => {
+        this.selectedCurrency = result;
+        this.emitSelectedCurrency.emit(result);
+      });
   }
 
   ngOnInit() {
@@ -56,10 +65,5 @@ export class SelectExchangeComponent implements OnInit {
   dealWithInputExchangeEvent(e: Event) {
     const value = parseInt((e.target as HTMLInputElement).value);
     this.debounce.next(value);
-  }
-
-  dealWithSelectedCurrencyEvent(currency: Currency) {
-    this.selectedCurrency = currency;
-    this.emitSelectedCurrency.emit(currency);
   }
 }

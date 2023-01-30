@@ -1,9 +1,7 @@
 <button
-  type="button"
-  class="btn custom-btn btn-primary w-100"
-  data-bs-toggle="modal"
-  data-bs-target="#currencyToModal"
-  #modalBtn
+  mat-raised-button
+  (click)="openDialog('300ms', '300ms')"
+  class="btn btn-primary w-100"
 >
   {{
     selectedCurrency
@@ -22,21 +20,5 @@
       aria-label="Dollar amount (with dot and two decimal places)"
       (input)="dealWithInputExchangeEvent($event)"
     />
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  [id]="modalTarget"
-  tabindex="-1"
-  aria-labelledby="List of currencies"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <app-currencies
-        (emitSelectedCurrency)="dealWithSelectedCurrencyEvent($event)"
-      ></app-currencies>
-    </div>
   </div>
 </div>

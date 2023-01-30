@@ -1,22 +1,20 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { CurrenciesFilterComponent } from "./components/currencies-filter/currencies-filter.component";
-import { FilterPipe } from "./components/currencies-filter/currencies-list.pipe";
-import { CurrenciesPaginationComponent } from "./components/currencies-pagination/currencies-pagination.component";
-import { PaginationPipe } from "./components/currencies-pagination/currencies-pagination.pipe";
-import { CurrenciesTableComponent } from "./components/currencies-table/currencies-table.component";
-import { CurrenciesComponent } from "./currencies.component";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { CurrenciesComponent } from './currencies.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-    declarations: [
-        CurrenciesFilterComponent,
-        CurrenciesTableComponent,
-        CurrenciesPaginationComponent,
-        CurrenciesComponent,
-        FilterPipe,
-        PaginationPipe
-    ],
-    exports: [CurrenciesComponent],
-    imports: [CommonModule]
+  declarations: [CurrenciesComponent],
+  exports: [CurrenciesComponent],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatInputModule,
+  ],
 })
 export class CurrenciesModule {}

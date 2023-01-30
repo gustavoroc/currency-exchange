@@ -3,14 +3,12 @@
     <app-select-exchange
       (emitSelectedCurrency)="setCurrency(false, $event)"
       (emitExchangeValue)="dealWithInputedValue($event)"
-      [modalTarget]="'from-currency'"
     ></app-select-exchange>
   </div>
   <div class="card text-center">
     <app-select-exchange
       (emitSelectedCurrency)="setCurrency(true, $event)"
       (emitExchangeValue)="dealWithInputedValue($event)"
-      [modalTarget]="'to-currency'"
     ></app-select-exchange>
   </div>
 </div>

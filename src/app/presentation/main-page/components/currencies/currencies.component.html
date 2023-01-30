@@ -1,23 +1,45 @@
-<div class="card shadow-lg" 
-    *ngIf="currencies | filterCurrencies: currencyFilter
-                      | paginateCurrencies: paginationQuery
-          as processedCurrencies"
->
-    <app-currencies-filter (filterEvent)="handleFilterEvent($event)">
-    </app-currencies-filter>
-    <hr>
-    <div class="card-body">
-        <app-currencies-table
-         [currenciesList]="processedCurrencies"
-         (emitSelectedCurrency)="handleSelectedCurrency($event)"
-        >
-        </app-currencies-table>
-    </div>
-    <app-pagination 
-    [currenciesListLength]="currencies.length"
-    [processedCurrenciesListLength]="processedCurrencies.length"
-    (currenciesCurrentPageEvent)="handlePaginationCurrentPageEvent($event)"
-    (currenciesPerPageEvent)="handleCurrenciesPerPageEvent($event)"
-    >
-    </app-pagination>
+<div>
+  <mat-form-field class="w-100">
+    <mat-label>Procurar por moedas</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. BRL.."
+      #input
+    />
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8 visual">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="acronym">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Simbolo</th>
+      <td mat-cell *matCellDef="let row">{{ row.acronym }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Moeda</th>
+      <td mat-cell *matCellDef="let row">{{ row.fullName }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      [ngClass]="{ selectedCurrency: row.acronym == selectedCurrency?.acronym }"
+      class="cursor-pointer"
+      (click)="emitCurrency(row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+
+    <tr class="mat-row text-center" *matNoDataRow>
+      <td class="mat-cell p-2" colspan="4">
+        Não há dados para este valor: "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    aria-label="Paginacao de Moedas"
+  ></mat-paginator>
 </div>
