@@ -9,6 +9,7 @@
     <app-select-exchange
       (emitSelectedCurrency)="setCurrency(true, $event)"
       (emitExchangeValue)="dealWithInputedValue($event)"
+      [modalTarget]="'to-currency'"
     ></app-select-exchange>
   </div>
 </div>
