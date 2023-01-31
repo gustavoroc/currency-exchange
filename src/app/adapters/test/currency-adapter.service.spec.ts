@@ -36,7 +36,8 @@ describe(CurrencyAdapterService.name, () => {
       currencyTo: 'EUR',
       valueTo: 46.174937,
       rate: 0.923499,
-      date: '2023-01-23',
+      time: new Date().toLocaleTimeString(),
+      date: new Date().toLocaleDateString(),
     };
 
     SUT.calculateCurrencyExchange('USD', 'EUR', 50).subscribe((data) => {
