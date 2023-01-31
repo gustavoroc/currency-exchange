@@ -65,4 +65,8 @@ export class HistoryPageComponent implements OnInit {
       }
     };
   }
+
+  ngOnDestroy() {
+    this.currencyPersistentService.currenciesExchange.unsubscribe();
+  }
 }
