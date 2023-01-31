@@ -41,7 +41,7 @@ export class CurrencyAdapterService implements CurrencyService {
   ): Observable<CurrencyExchange> {
     return this.currencyApiService.convertExchange(from, to, value).pipe(
       map((data) => {
-        const { query, info, result, date } = data;
+        const { query, info, result } = data;
         const currencyExchange: CurrencyExchange = {
           currencyFrom: query.from,
           valueFrom: query.amount,

@@ -56,7 +56,6 @@ export class MakeExchangeComponent implements OnChanges {
               id: uuidv4(),
               isHigherThan10000k: this.isHigherThan10000k,
             };
-            console.log(this.processedExchangeData);
             if (!this.currencyPersistentService.getAll()) {
               this.currencyPersistentService.add([this.processedExchangeData]);
             } else {
