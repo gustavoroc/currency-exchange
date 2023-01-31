@@ -80,7 +80,7 @@ describe(HistoryPageComponent.name, () => {
     expect(tableValue1).toBeLessThanOrEqual(tableValue2);
   });
 
-  it(`(D) ${HistoryPageComponent} should have one currency exchange tagged with >10000k`, () => {
+  it(`(D) ${HistoryPageComponent} should have two currency exchange tagged with >10000k`, () => {
     const arrOfHigherThan10000k = (
       fixture.nativeElement as HTMLElement
     ).querySelectorAll('#isHigherThan10000k');
