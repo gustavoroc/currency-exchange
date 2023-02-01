@@ -2,8 +2,9 @@
   <mat-form-field class="w-100">
     <mat-label>Procurar por moedas</mat-label>
     <input
+      id="filter-currencies-input"
       matInput
-      (keyup)="applyFilter($event)"
+      (input)="applyFilter($event)"
       placeholder="Ex. BRL.."
       #input
     />

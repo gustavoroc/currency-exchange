@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
 import { Currency } from 'src/app/models/currency.model';
 import { CurrencyService } from 'src/app/usecases/currency-adapter-service.usecase';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-currencies',
@@ -40,8 +40,8 @@ export class CurrenciesComponent {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
+    console.log(filterValue);
     this.dataSource!.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource!.paginator) {
       this.dataSource!.paginator.firstPage();
     }
