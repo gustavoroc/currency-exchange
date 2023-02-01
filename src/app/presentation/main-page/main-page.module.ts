@@ -7,7 +7,6 @@ import { MakeExchangeComponent } from './components/make-exchange/make-exchange.
 import { SelectExchangeComponent } from './components/select-exchange/select-exchange.component';
 import { MainPageComponent } from './main-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { CurrencyAdapterService } from '../currency-adapter.service';
 import { CurrencyApiStub } from './currency-api.stub';
 import { Currency, CurrencyExchange } from 'src/app/models/currency.model';
-import { CurrencyApiInterfaceToken } from 'src/app/injection-tokens/currency-api-service.di.token';
+import { CurrencyApiInterfaceToken } from 'src/app/injection-tokens/currency-api.service.di.token';
 
 describe(CurrencyAdapterService.name, () => {
   let SUT: CurrencyAdapterService;

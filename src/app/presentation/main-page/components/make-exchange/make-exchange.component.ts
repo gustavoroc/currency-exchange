@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnChanges } from '@angular/core';
-import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
+import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter.service.di.token';
 import { CurrencyPersistentInterfaceServiceToken } from 'src/app/injection-tokens/currency-persistent.service.di.token';
 import { Currency, CurrencyExchange } from 'src/app/models/currency.model';
-import { CurrencyService } from 'src/app/usecases/currency-adapter-service.usecase';
+import { CurrencyService } from 'src/app/usecases/currency-adapter.service.usecase';
 import { CurrencyExchangePersistentService } from 'src/app/usecases/currency-persistent.service.usecase';
 import { v4 as uuidv4 } from 'uuid';
 

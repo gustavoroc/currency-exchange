@@ -5,7 +5,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
+import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter.service.di.token';
 import { CurrencyServiceStub } from '../test/stub/currency-service.stub';
 import { CurrenciesComponent } from './currencies.component';
 import { CurrenciesModule } from './currencies.module';

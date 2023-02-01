@@ -3,9 +3,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter-service.di.token';
+import { CurrencyAdapterInterfaceToken } from 'src/app/injection-tokens/currency-adapter.service.di.token';
 import { Currency } from 'src/app/models/currency.model';
-import { CurrencyService } from 'src/app/usecases/currency-adapter-service.usecase';
+import { CurrencyService } from 'src/app/usecases/currency-adapter.service.usecase';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({

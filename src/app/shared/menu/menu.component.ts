@@ -17,7 +17,6 @@ export class MenuComponent {
       .subscribe({
         next: (e) => {
           this.currentRoute = (e as NavigationEnd).url;
-          console.log(this.currentRoute);
         },
       });
   }
