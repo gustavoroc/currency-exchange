@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test --browsers ChromeHeadless",
-    "test-browser": "ng test"
+    "test-browser": "ng test",
+    "build:prod": "ng build --configuration production --base-href https://gustavoroc.github.io/currency-exchange/",
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
