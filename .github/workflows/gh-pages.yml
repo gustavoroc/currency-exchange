@@ -1,35 +1,33 @@
-name: GitHub Pages
+name: Deploy Angular to GitHub Pages
 
 on:
   push:
     branches:
       - main
+  pull_request:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: '14'
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
+        run: npm ci
+        
+      - name: Run Tests
         run: npm run test:headless
 
-      - name: Build
+      - name: Build Angular app
         run: npm run build:prod
 
       - name: Deploy
-        if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/angular-github-actions
-          enable_jekyll: true
+          publish_dir: ./dist/currency-exchange
