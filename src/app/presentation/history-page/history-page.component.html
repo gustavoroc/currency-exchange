@@ -1,4 +1,7 @@
-<div class="mat-elevation-z8" *ngIf="dataSource && dataSource.data">
+<div
+  class="mat-elevation-z8"
+  *ngIf="dataSource && dataSource.data.length > 0; else emptyHistoryTemplate"
+>
   <table mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Data</th>
@@ -73,3 +76,9 @@
   >
   </mat-paginator>
 </div>
+
+<ng-template #emptyHistoryTemplate>
+  <span class="fw-light"
+    >Parece que voce nao possui conversoes no seu historico...</span
+  >
+</ng-template>

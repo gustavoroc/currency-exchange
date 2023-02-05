@@ -42,6 +42,7 @@ export class HistoryPageComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.persistedExchanges);
       this.dataSource.paginator = this.paginator;
       this.dataSource!.sort = this.sort;
+      console.log(this.dataSource.data);
     });
   }
 
