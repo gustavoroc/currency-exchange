@@ -1,6 +1,6 @@
 import { Observable, of } from 'rxjs';
 import { Currency, CurrencyExchange } from 'src/app/models/currency.model';
-import { CurrencyService } from 'src/app/usecases/currency-adapter.service.usecase';
+import { CurrencyService } from 'src/app/usecases/currency.service.usecase';
 
 export class CurrencyServiceStub implements CurrencyService {
   availableCurrencies(): Observable<Currency[]> {

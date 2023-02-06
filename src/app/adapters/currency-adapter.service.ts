@@ -4,7 +4,7 @@ import { map, Observable, tap } from 'rxjs';
 import { CurrencyApiInterfaceToken } from '../injection-tokens/currency-api.service.di.token';
 import { Currency, CurrencyExchange } from '../models/currency.model';
 import { CurrencyApiService } from '../usecases/currency-api.service.usecase';
-import { CurrencyService } from '../usecases/currency-adapter.service.usecase';
+import { CurrencyService } from '../usecases/currency.service.usecase';
 
 @Injectable()
 export class CurrencyAdapterService implements CurrencyService {
